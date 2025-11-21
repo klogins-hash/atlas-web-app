@@ -8,35 +8,49 @@ A beautiful web interface for voice conversations with Atlas AI assistant using 
 - 💬 Live transcript display
 - 📊 Voice status indicators (Listening, Thinking, Speaking)
 - 🎨 Beautiful gradient UI
-
-## Current Status
-
-⚠️ **CORS Issue**: Direct browser API calls are blocked by Ultravox's security policy. Needs backend proxy.
+- 🔒 Secure backend proxy (API key protected)
 
 ## Setup
 
-1. Serve the app:
+1. Install dependencies:
 ```bash
-python3 -m http.server 5050
+npm install
 ```
 
-2. Open browser:
-```
-http://localhost:5050
+2. Start the server:
+```bash
+npm start
 ```
 
-## Known Issues
+3. Open browser:
+```
+http://localhost:3001
+```
 
-- **CORS Error**: Browser cannot directly use API key with Ultravox API
-- **Solution Needed**: Backend server to proxy call creation
+## Architecture
+
+- **Frontend**: Vanilla JavaScript + Ultravox Client SDK
+- **Backend**: Express.js proxy server
+- **Security**: API key stored server-side only
 
 ## Technologies
 
 - Ultravox Client SDK (0.6.0)
 - WebRTC for voice
-- Vanilla JavaScript
+- Express.js backend
+- CORS enabled for local development
 - Modern CSS with gradients
 
-## Security Note
+## How It Works
 
-⚠️ API key is currently embedded in HTML (insecure). Move to backend server for production.
+1. Browser sends request to `/api/create-call`
+2. Backend server creates Ultravox call with API key
+3. Server returns join URL to browser
+4. Browser connects to call via WebRTC (no API key needed)
+
+## Production Deployment
+
+- Set `ULTRAVOX_API_KEY` environment variable
+- Remove hardcoded API key from `server.js`
+- Configure CORS for your domain
+- Use HTTPS for secure WebRTC connections
