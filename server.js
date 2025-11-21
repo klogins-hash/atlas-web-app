@@ -25,7 +25,7 @@ app.post('/api/create-call', async (req, res) => {
                 'X-API-Key': ULTRAVOX_API_KEY
             },
             body: JSON.stringify({
-                medium: { webrtc: {} }
+                medium: { webRtc: {} }
             })
         });
 
