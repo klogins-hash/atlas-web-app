@@ -234,8 +234,9 @@
         <div id="errorContainer"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/ultravox-client@0.6.0/dist/ultravox-client.umd.js"></script>
-    <script>
+    <script type="module">
+        import { UltravoxSession } from 'https://cdn.jsdelivr.net/npm/ultravox-client@0.4.2/+esm';
+
         let session = null;
         let messages = [];
 
@@ -263,7 +264,7 @@
                 setStatus('connecting', 'Connecting...', 'Joining your call with Atlas');
 
                 // Create session
-                session = new UltravoxClient.UltravoxSession();
+                session = new UltravoxSession();
 
                 // Listen to status changes
                 session.addEventListener('status', (event) => {
